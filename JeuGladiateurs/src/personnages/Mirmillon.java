@@ -9,10 +9,10 @@ package personnages;
  *
  * @author Félix-Antoine Laroche
  */
-public class Mirmillon {
+public class Mirmillon extends Personnage {
     //**************************************************************************
     //<editor-fold desc="ATTRIBUTS">
-
+    
     //</editor-fold>
 
     //**************************************************************************

@@ -9,6 +9,7 @@ public class Personnage {
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Attributs">
     private String nom;
+    private String classe;
     private int pointsDeVie;
     private int valeurMaxAttaque;
     private int valeurDefense;
@@ -45,6 +46,10 @@ public class Personnage {
         // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
     }
 
+    public String getClasse() {
+        return classe;
+    }
+
     public int getPointsDeVie() {
         return pointsDeVie;
     }
@@ -63,6 +68,10 @@ public class Personnage {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
     }
 
     public void setPointsDeVie(int pointsDeVie) {
@@ -88,6 +97,7 @@ public class Personnage {
     // <editor-fold defaultstate="collapsed" desc="Mécanique de jeu">
     public void afficherInfosPersonnage() {
         System.out.println("\n" + getNom());
+        System.out.println("\tClasse : " + getClasse());
         System.out.println("\tAttaque : " + getValeurMaxAttaque());
         System.out.println("\tDéfense : " + getValeurDefense());
         System.out.println("\tPoints de vie : " + getPointsDeVie());

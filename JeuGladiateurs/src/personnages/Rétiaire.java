@@ -1,9 +1,8 @@
 package personnages;
 
-public class Rétiaire {
+public class Rétiaire extends Personnage {
     //**************************************************************************
     //<editor-fold desc="ATTRIBUTS">
-    
     //</editor-fold>
 
     //**************************************************************************
