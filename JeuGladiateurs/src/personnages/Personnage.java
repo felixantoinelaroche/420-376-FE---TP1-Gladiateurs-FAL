@@ -13,6 +13,7 @@ public class Personnage {
     private int valeurMaxAttaque;
     private int valeurDefense;
     private int initiative;
+
     // </editor-fold>
     // **************************************************************************
     // **************************************************************************
@@ -33,14 +34,15 @@ public class Personnage {
         valeurDefense = 0;
         initiative = 0;
     }
+
     // </editor-fold>
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Getters et setters">
-       public String getNom() {
+    public String getNom() {
         return nom;
-        // TODO : Afficher les infos du personnage, tel que montr√© dans l'√©nonc√©
+        // TODO : Afficher les infos du personnage, tel que montrÈ dans l'ÈnoncÈ
     }
 
     public int getPointsDeVie() {
@@ -54,8 +56,8 @@ public class Personnage {
     public int getValeurDefense() {
         return valeurDefense;
     }
-    
-    public int getInitiative() {    
+
+    public int getInitiative() {
         return initiative;
     }
 
@@ -78,18 +80,19 @@ public class Personnage {
     public void setInitiative(int initiative) {
         this.initiative = initiative;
     }
+
     // </editor-fold>
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
-    // <editor-fold defaultstate="collapsed" desc="M√©canique de jeu">
+    // <editor-fold defaultstate="collapsed" desc="MÈcanique de jeu">
     public void afficherInfosPersonnage() {
         System.out.println("\n" + getNom());
         System.out.println("\tAttaque : " + getValeurMaxAttaque());
-        System.out.println("\tD√©fense : " + getValeurDefense());
+        System.out.println("\tDÈfense : " + getValeurDefense());
         System.out.println("\tPoints de vie : " + getPointsDeVie());
         System.out.println("\tInitiative : " + getInitiative());
-        if (getPointsDeVie()>0) {
+        if (getPointsDeVie() > 0) {
             System.out.println("\tStatut : Vivant");
         } else {
             System.out.println("\tStatut : Mort");
@@ -103,13 +106,27 @@ public class Personnage {
     }
 
     public void frapperPersonnage(Personnage personnageCible) {
-        // TODO : R√©cup√©rer la valeur d'attaque pour ce tour, calculer les d√©gats,
-        //modifier les points de vie du personnage cible, afficher les d√©tails
-        // sur l'attaque, tel que montr√© dans l'√©nonc√©.
+        int forceFrappe = attaqueCalcul();
+        int defense = personnageCible.valeurDefense;
+        int dommages = forceFrappe - defense;
+
+        if (dommages < 0) {
+            dommages = 0;
+        }
+
+        personnageCible.pointsDeVie -= dommages;
+
+        if (personnageCible.pointsDeVie < 0) {
+            personnageCible.pointsDeVie = 0;
+        }
+        
+        System.out.println("\n" + nom + " attaque avec une puissance de : " + forceFrappe);
+        System.out.println(personnageCible.nom + " a une dÈfense de : " + defense);
+        System.out.println("Les dommages sont donc de : " + dommages);
     }
 
     public void setNewInitiativeRandom() {
-        // TODO : Modifier de fa√ßon al√©atoire la valeur INI du personnage.
+        // TODO : Modifier de faÁon alÈatoire la valeur INI du personnage.
     }
     // </editor-fold>
 }
