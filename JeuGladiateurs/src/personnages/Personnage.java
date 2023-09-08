@@ -20,8 +20,9 @@ public class Personnage {
     // **************************************************************************
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Constructeurs et initialisation">
-    public Personnage(String nom, int attaqueMax, int defense, int pvs, int ini) {
+    public Personnage(String nom, String classe, int attaqueMax, int defense, int pvs, int ini) {
         this.nom = nom;
+        this.classe = classe;
         this.pointsDeVie = pvs;
         this.valeurMaxAttaque = attaqueMax;
         this.valeurDefense = defense;
@@ -30,6 +31,7 @@ public class Personnage {
 
     public Personnage() {
         nom = "";
+        classe = "";
         pointsDeVie = 0;
         valeurMaxAttaque = 0;
         valeurDefense = 0;
