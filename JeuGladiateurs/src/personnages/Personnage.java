@@ -117,6 +117,25 @@ public class Personnage {
     }
 
     public void frapperPersonnage(Personnage personnageCible) {
+        if ("Rétiaire".equals(classe)) {
+            if (Rétiaire.isEnPossessionFilet()) {
+                System.out.println("\n" + nom + " lance son filet");
+            }
+            boolean lancerFilet = Rétiaire.attaqueRétiaire();
+            if (lancerFilet) {
+                personnageCible.pointsDeVie = 0;
+                System.out.println("Son filet attrape " + personnageCible.nom + " et il l'empale avec sa lance");
+                return;
+            } else {
+                if (!Rétiaire.isEnPossessionFilet()) {
+                    System.out.println("Le filet n'atteint pas sa cible");
+                    return;
+                } else {
+                    System.out.println("\n" + nom + " ramasse son filet et en profite pour attaquer");
+                }
+            }
+        }
+
         int forceFrappe = attaqueCalcul();
         int defense = personnageCible.valeurDefense;
         int dommages = forceFrappe - defense;
@@ -130,7 +149,7 @@ public class Personnage {
         if (personnageCible.pointsDeVie < 0) {
             personnageCible.pointsDeVie = 0;
         }
-        
+
         System.out.println("\n" + nom + " attaque avec une puissance de : " + forceFrappe);
         System.out.println(personnageCible.nom + " a une défense de : " + defense);
         System.out.println("Les dommages sont donc de : " + dommages);

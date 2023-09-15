@@ -5,7 +5,7 @@ import combat.CompteurDeTour;
 import combat.AffichageEcran;
 
 public class JeuGladiateurs {
-    
+
     public static void main(String[] args) {
 
         // **************************************************************************
@@ -36,9 +36,15 @@ public class JeuGladiateurs {
             for (int i = 0; i <= 100; i++) {
                 if (Bob.getInitiative() == i) {
                     Bob.frapperPersonnage(Igor);
+                    if (Igor.getPointsDeVie() == 0) {
+                        break;
+                    }
                 }
                 if (Igor.getInitiative() == i) {
                     Igor.frapperPersonnage(Bob);
+                    if (Bob.getPointsDeVie() == 0) {
+                        break;
+                    }
                 }
             }
             affichage.afficherSeparateurInfosPerso();
@@ -49,9 +55,9 @@ public class JeuGladiateurs {
             tour.augmenteTour();
             affichage.afficherSeparateurDeTour();
         } while (Bob.getPointsDeVie() > 0 && Igor.getPointsDeVie() > 0);
-        
+
         affichage.afficheVictoire(Igor, Bob);
         // </editor-fold>
     }
-    
+
 }
