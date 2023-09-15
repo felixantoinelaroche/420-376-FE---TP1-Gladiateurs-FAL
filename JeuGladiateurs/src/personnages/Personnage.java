@@ -28,7 +28,7 @@ public class Personnage {
         this.valeurDefense = defense;
         this.initiative = ini;
     }
-
+    
     public Personnage() {
         nom = "";
         classe = "";
@@ -46,47 +46,47 @@ public class Personnage {
     public String getNom() {
         return nom;
     }
-
+    
     public String getClasse() {
         return classe;
     }
-
+    
     public int getPointsDeVie() {
         return pointsDeVie;
     }
-
+    
     public int getValeurMaxAttaque() {
         return valeurMaxAttaque;
     }
-
+    
     public int getValeurDefense() {
         return valeurDefense;
     }
-
+    
     public int getInitiative() {
         return initiative;
     }
-
+    
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+    
     public void setClasse(String classe) {
         this.classe = classe;
     }
-
+    
     public void setPointsDeVie(int pointsDeVie) {
         this.pointsDeVie = pointsDeVie;
     }
-
+    
     public void setValeurMaxAttaque(int valeurMaxAttaque) {
         this.valeurMaxAttaque = valeurMaxAttaque;
     }
-
+    
     public void setValeurDefense(int valeurDefense) {
         this.valeurDefense = valeurDefense;
     }
-
+    
     public void setInitiative(int initiative) {
         this.initiative = initiative;
     }
@@ -109,13 +109,13 @@ public class Personnage {
             System.out.println("\tStatut : Mort");
         }
     }
-
+    
     private int attaqueCalcul() {
         Random rand = new Random();
         int attaque = rand.nextInt((valeurMaxAttaque + 1));
         return attaque;
     }
-
+    
     public void frapperPersonnage(Personnage personnageCible) {
         if ("Rétiaire".equals(classe)) {
             if (Rétiaire.isEnPossessionFilet()) {
@@ -135,29 +135,40 @@ public class Personnage {
                 }
             }
         }
-
-        int forceFrappe = attaqueCalcul();
-        int defense = personnageCible.valeurDefense;
-        int dommages = forceFrappe - defense;
-
-        if (dommages < 0) {
-            dommages = 0;
+        
+        for (int i = 0; i < ("Mirmillon".equals(classe)?2:1); i++) {
+            int forceFrappe = attaqueCalcul();
+            int defense = personnageCible.valeurDefense;
+            int dommages = forceFrappe - defense;
+            
+            if (dommages < 0) {
+                dommages = 0;
+            }
+            
+            personnageCible.pointsDeVie -= dommages;
+            
+            if (personnageCible.pointsDeVie < 0) {
+                personnageCible.pointsDeVie = 0;
+            }
+            
+            System.out.println("\n" + nom + " attaque avec une puissance de : " + forceFrappe);
+            System.out.println(personnageCible.nom + " a une défense de : " + defense);
+            System.out.println("Les dommages sont donc de : " + dommages);
+            if ("Mirmillon".equals(classe) && i==0) {
+                if (personnageCible.getPointsDeVie() == 0) {
+                    System.out.println("\n" + nom + " décapite " + personnageCible.getNom());
+                    return;
+                } else {
+                    System.out.println("\n" + nom + " attaque de nouveau");
+                }
+            }
         }
-
-        personnageCible.pointsDeVie -= dommages;
-
-        if (personnageCible.pointsDeVie < 0) {
-            personnageCible.pointsDeVie = 0;
-        }
-
-        System.out.println("\n" + nom + " attaque avec une puissance de : " + forceFrappe);
-        System.out.println(personnageCible.nom + " a une défense de : " + defense);
-        System.out.println("Les dommages sont donc de : " + dommages);
+        
     }
-
+    
     public void setNewInitiativeRandom() {
         Random rand = new Random();
-        initiative = rand.nextInt(101);
+        initiative = rand.nextInt("Mirmillon".equals(classe) ? 31 : 101);
     }
     // </editor-fold>
 }
